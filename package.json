@@ -1,6 +1,6 @@
 {
-  "name": "react-phone-input-2",
-  "version": "2.11.0",
+  "name": "@quantfive/react-phone-input-2",
+  "version": "2.12.0",
   "description": "A react component to format phone numbers",
   "main": "lib/lib.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bl00mber/react-phone-input-2.git"
+    "url": "git+https://github.com/quantfive/react-phone-input-2"
   },
   "keywords": [
     "react",
@@ -37,15 +37,15 @@
     "LICENSE",
     "README.md"
   ],
-  "author": "Nick Reiley <bloomber111@gmail.com> (https://github.com/bl00mber)",
+  "author": "Q5 <patrick@quantfive.org> (https://github.com/quantfive)",
   "contributors": [
     "Raza Gill <raza.gill@outlook.com> (https://github.com/razagill)"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bl00mber/react-phone-input-2/issues"
+    "url": "https://github.com/quantfive/react-phone-input-2/issues"
   },
-  "homepage": "https://github.com/bl00mber/react-phone-input-2",
+  "homepage": "https://github.com/quantfive/react-phone-input-2",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/test/__mocks__/fileMock.js",
