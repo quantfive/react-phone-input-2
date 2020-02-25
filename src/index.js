@@ -830,7 +830,7 @@ class PhoneInput extends React.Component {
         style={this.props.style || this.props.containerStyle}
         onKeyDown={this.handleKeydown}>
         <div style={{display: 'flex', position: 'relative'}}>
-          {!this.props.countryCodeEditable &&
+          {!this.props.countryCodeEditable && this.props.showCountryCode &&
             <div style={{
               position: 'absolute',
               left: 48,
