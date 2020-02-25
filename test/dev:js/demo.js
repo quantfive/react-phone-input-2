@@ -5,10 +5,22 @@ import '../../src/style/style.less';
 
 
 class Demo extends React.Component {
-  state = { country: 'br', value: '12345',
-    playgroundProps: {country: 'us', enableAreaCodes: true} }
+  state = { 
+    country: 'br',
+    value: '12345',
+    demoInput: '+18502944844',
+    playgroundProps: {country: 'us', enableAreaCodes: true}
+  }
 
   playgroundKey = 1
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({
+        demoInput: '+18502944844',
+      });
+    }, 500);
+  }
 
   renderPlayground = (e) => {
     if (e.which === 13) {
@@ -124,7 +136,7 @@ class Demo extends React.Component {
           <PhoneInput
             country='us'
             countryCodeEditable={false}
-            value={'+18502944844'}
+            value={this.state.demoInput}
             inputExtraProps={{
               name: 'tel',
               required: true,

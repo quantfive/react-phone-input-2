@@ -173,10 +173,6 @@ class PhoneInput extends React.Component {
       countryGuess.name ? countryGuess.format : undefined
     );
 
-    // if (!this.props.countryCodeEditable) {
-    //   formattedNumber = formattedNumber.replace(dialCode, '');
-    // }
-
     const highlightCountryIndex = onlyCountries.findIndex(o => o == countryGuess);
 
     this.state = {
@@ -264,7 +260,7 @@ class PhoneInput extends React.Component {
   }
 
   updateFormattedNumber(value) {
-    const { onlyCountries, country } = this.state;
+    const { onlyCountries, country, selectedCountry } = this.state;
     let newSelectedCountry;
     let inputNumber = value;
     let formattedNumber = value;
@@ -274,6 +270,9 @@ class PhoneInput extends React.Component {
     if (!startsWith(inputNumber, this.props.prefix)) {
       newSelectedCountry = this.state.selectedCountry || onlyCountries.find(o => o.iso2 == country);
       const dialCode = newSelectedCountry && !startsWith(inputNumber.replace(/\D/g, ''), newSelectedCountry.dialCode) ? newSelectedCountry.dialCode : '';
+      if (!this.props.countryCodeEditable) {
+        inputNumber = inputNumber.replace(newSelectedCountry.dialCode, '');
+      }
       formattedNumber = this.formatNumber(
         (this.props.disableCountryCode ? '' : dialCode) + inputNumber.replace(/\D/g, ''),
         newSelectedCountry ? (newSelectedCountry.format || this.getDefaultMask(newSelectedCountry)) : undefined
@@ -282,6 +281,9 @@ class PhoneInput extends React.Component {
     else {
       inputNumber = inputNumber.replace(/\D/g, '');
       newSelectedCountry = this.guessSelectedCountry(inputNumber.substring(0, 6), onlyCountries, country) || this.state.selectedCountry;
+      if (!this.props.countryCodeEditable) {
+        inputNumber = inputNumber.replace(newSelectedCountry.dialCode, '');
+      }
       formattedNumber = newSelectedCountry ?
         this.formatNumber(inputNumber, newSelectedCountry.format || this.getDefaultMask(newSelectedCountry)) : inputNumber;
     }
@@ -805,7 +807,6 @@ class PhoneInput extends React.Component {
   render() {
     let { onlyCountries, selectedCountry, showDropdown, formattedNumber } = this.state;
     const { disableDropdown, renderStringAsFlag } = this.props;
-
     const arrowClasses = classNames({'arrow': true, 'up': showDropdown});
     const inputClasses = classNames({
       [this.props.inputClass]: true,
