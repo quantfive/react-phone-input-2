@@ -142,7 +142,7 @@ class PhoneInput extends React.Component {
       props.prefix,
     );
 
-    const inputNumber = props.value.replace(/[^0-9\.]+/g, '') || '';
+    let inputNumber = props.value.replace(/[^0-9\.]+/g, '') || '';
 
     let countryGuess;
     if (inputNumber.length > 1) {
@@ -154,6 +154,10 @@ class PhoneInput extends React.Component {
     } else {
       // Empty params
       countryGuess = 0;
+    }
+
+    if (!this.props.countryCodeEditable && countryGuess) {
+      inputNumber = inputNumber.replace(countryGuess.dialCode, '');
     }
 
     const dialCode = (
@@ -169,9 +173,9 @@ class PhoneInput extends React.Component {
       countryGuess.name ? countryGuess.format : undefined
     );
 
-    if (!this.props.countryCodeEditable) {
-      formattedNumber = formattedNumber.replace(dialCode, '');
-    }
+    // if (!this.props.countryCodeEditable) {
+    //   formattedNumber = formattedNumber.replace(dialCode, '');
+    // }
 
     const highlightCountryIndex = onlyCountries.findIndex(o => o == countryGuess);
 
@@ -336,6 +340,7 @@ class PhoneInput extends React.Component {
   formatNumber = (text, patternArg) => {
     const { disableCountryCode, enableLongNumbers, autoFormat, countryCodeEditable } = this.props;
 
+    
     let pattern;
     if ((disableCountryCode || !countryCodeEditable) && patternArg) {
       pattern = patternArg.split(' ');
@@ -820,7 +825,7 @@ class PhoneInput extends React.Component {
     const inputFlagClasses = `flag ${selectedCountry && selectedCountry.iso2}`;
 
     let inputStyle = {...this.props.inputStyle};
-    if (!this.props.countryCodeEditable) {
+    if (!this.props.countryCodeEditable && this.props.showCountryCode) {
       inputStyle.paddingLeft = 85;
     }
 

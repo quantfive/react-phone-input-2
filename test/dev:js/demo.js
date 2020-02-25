@@ -122,11 +122,9 @@ class Demo extends React.Component {
           <p>Non-editable country code</p>
           <p>Autofocus</p>
           <PhoneInput
-            country='de'
-            onlyCountries={['de', 'es']}
-            localization={{'Germany': 'Deutschland', 'Spain': 'España'}}
-            enableAreaCodes
+            country='us'
             countryCodeEditable={false}
+            value={'+18502944844'}
             inputExtraProps={{
               name: 'tel',
               required: true,
