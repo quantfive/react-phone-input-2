@@ -169,7 +169,9 @@ class PhoneInput extends React.Component {
     let formattedNumber;
     formattedNumber = (inputNumber === '' && countryGuess === 0) ? '' :
     this.formatNumber(
-      (props.disableCountryCode ? '' : dialCode) + inputNumber.replace(/\D/g, ''),
+      !props.countryCodeEditable 
+        ? inputNumber.length === 0 ? '' : (props.disableCountryCode ? '' : dialCode) + inputNumber.replace(/\D/g, '')
+        : (props.disableCountryCode ? '' : dialCode) + inputNumber.replace(/\D/g, ''),
       countryGuess.name ? countryGuess.format : undefined
     );
 

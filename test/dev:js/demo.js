@@ -8,19 +8,11 @@ class Demo extends React.Component {
   state = { 
     country: 'br',
     value: '12345',
-    demoInput: '+18502944844',
+    demoInput: '',
     playgroundProps: {country: 'us', enableAreaCodes: true}
   }
 
   playgroundKey = 1
-
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.setState({
-        demoInput: '+18502944844',
-      });
-    }, 500);
-  }
 
   renderPlayground = (e) => {
     if (e.which === 13) {
