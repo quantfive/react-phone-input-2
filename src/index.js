@@ -508,13 +508,15 @@ class PhoneInput extends React.Component {
     let newSelectedCountry = this.state.selectedCountry;
     let freezeSelection = this.state.freezeSelection;
 
+    let mainCode = '';
     if (!this.props.countryCodeEditable) {
-      const mainCode = newSelectedCountry.hasAreaCodes ?
+      mainCode = newSelectedCountry.hasAreaCodes ?
         this.state.onlyCountries.find(o => o.iso2 === newSelectedCountry.iso2 && o.mainCode).dialCode :
         newSelectedCountry.dialCode;
 
+      const valueWithPrefix = prefix+mainCode+value;
       const updatedInput = prefix+mainCode;
-      if (value.slice(0, updatedInput.length) !== updatedInput) return;
+      if ((value.slice(0, updatedInput.length) !== updatedInput && valueWithPrefix.slice(0, updatedInput.length) !== updatedInput) || value.length < updatedInput.length) return;
     }
 
     if (value === prefix) {
@@ -546,9 +548,13 @@ class PhoneInput extends React.Component {
 
     if (onChange) e.persist();
 
+    const countryCodeNum = prefix + mainCode;
     if (value.length > 0) {
       // before entering the number in new format, lets check if the dial code now matches some other country
-      const inputNumber = value.replace(/\D/g, '');
+      let inputNumber = value.replace(/\D/g, '');
+      if (!value.includes(prefix) && !this.props.countryCodeEditable && countryCodeNum === this.state.formattedNumber) {
+        inputNumber = mainCode + value.replace(/\D/g, '');
+      }
 
       // we don't need to send the whole number to guess the country... only the first 6 characters are enough
       // the guess country function can then use memoization much more effectively since the set of input it

@@ -50,17 +50,29 @@ class Demo extends React.Component {
           <PhoneInput
             country='no'
             excludeCountries={['us', 'ca']}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
           />
           <p>Only countries</p>
           <PhoneInput
             country='gb'
             onlyCountries={['gb', 'es']}
             preserveOrder={['onlyCountries']}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
           />
           <p>Preferred countries</p>
           <PhoneInput
             country='it'
             preferredCountries={['it', 'se']}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
           />
         </div>
 
@@ -69,10 +81,18 @@ class Demo extends React.Component {
           <PhoneInput
             value='+3802343252'
             priority={{ca: 0, us: 1, kz: 0, ru: 1}}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
           />
           <p>Local area codes with enableAreaCodes</p>
           <PhoneInput
             country='us'
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
             enableAreaCodes
           />
           <p>Dependent territories with enableTerritories</p>
@@ -80,6 +100,10 @@ class Demo extends React.Component {
             country='vg'
             enableSearch
             enableTerritories
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
           />
           <p>Disabled flag by default</p>
           <p>Customizable placeholder</p>
@@ -102,6 +126,10 @@ class Demo extends React.Component {
             inputClass={'custom-phone-input'}
             buttonClass={'custom-phone-button'}
             dropdownClass={'custom-dropdown'}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
           />
         </div>
 
@@ -110,18 +138,30 @@ class Demo extends React.Component {
           <PhoneInput
             country='it'
             regions={'europe'}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
             enableAreaCodes
           />
           <p>Custom regions selected: {`{['north-america', 'carribean']}`}</p>
           <PhoneInput
             country='ca'
             regions={['north-america', 'carribean']}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
           />
           <p>Disabled dropdown and country code</p>
           <PhoneInput
             onlyCountries={['us']}
             country='us'
             placeholder='(702) 123-4567'
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
             disableCountryCode
             disableDropdown
           />
@@ -129,10 +169,14 @@ class Demo extends React.Component {
           <p>Non-editable country code</p>
           <p>Autofocus</p>
           <PhoneInput
-            country='de'
+            country='us'
             onlyCountries={['de', 'es', 'us']}
             localization={{'Germany': 'Deutschland', 'Spain': 'España'}}
             countryCodeEditable={false}
+            inputProps={{
+              placeholder: "Cell Number",
+              autoComplete: "tel-national"
+            }}
             inputExtraProps={{
               name: 'tel',
               required: true,
